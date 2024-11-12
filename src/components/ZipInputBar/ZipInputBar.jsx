@@ -11,6 +11,7 @@ const ZipInputBar = () => {
   return (
     <>
       <input id="zip-input-bar" onChange={handleTextChange} value={inputText} placeholder="Enter Zip Code to Find Nearby Gas Prices"></input>
+      <button>Search</button>
     </>
   )
 }
