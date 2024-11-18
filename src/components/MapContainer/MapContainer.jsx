@@ -5,6 +5,8 @@ import {
   MapCameraChangedEvent,
 } from "@vis.gl/react-google-maps";
 
+import { useEffect } from 'react';
+
 const MapContainer = () => {
 
   const mapStyle = {
@@ -13,6 +15,12 @@ const MapContainer = () => {
     width: '80vw',
     margin: '5vw 10vw 0 10vw'
   }
+
+  let geocoder;
+
+  useEffect(() => {
+    geocoder = new google.maps.Geocoder()
+  }, [])
 
   return (
     <APIProvider
