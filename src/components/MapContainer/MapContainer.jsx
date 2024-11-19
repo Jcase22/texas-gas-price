@@ -16,6 +16,9 @@ const MapContainer = () => {
     margin: '5vw 10vw 0 10vw'
   }
 
+  const [addressArray, setAddressArray] = useState([])
+  const [geocodeArray, setGeocodeArray] = useState([])
+
   //"2995 Dulles Ave Missouri City, TX"
 
   const geocoder = async (address) => {
@@ -27,11 +30,31 @@ const MapContainer = () => {
       }
     })
 
-    console.log(results.data.results);
+    return results.data.results.geometry.location;
+  }
+
+  const initialAddressInput = () => {
+    // this function makes a call to the gas prices locator API for list of gas stations
+
+    // returns array of addresses
   }
 
   useEffect(() => {
-    geocoder("2995 Dulles Ave Missouri City, TX")
+
+    const tempArr = [];
+
+    // geocoder("2995 Dulles Ave Missouri City, TX")  example geocoder call THAT WORKS!!
+
+    // make a call to initialAddressInput;
+
+    // set results in state
+
+    addressArray.forEach((address) => {
+      const geocode = geocoder(address);
+      tempArr.push(geocode);
+    })
+
+    // make pin for each result
   }, [])
 
   return (
