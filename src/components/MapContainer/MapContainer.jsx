@@ -4,8 +4,8 @@ import {
   Map,
   MapCameraChangedEvent,
 } from "@vis.gl/react-google-maps";
-
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const MapContainer = () => {
 
@@ -16,10 +16,22 @@ const MapContainer = () => {
     margin: '5vw 10vw 0 10vw'
   }
 
-  let geocoder;
+  //"2995 Dulles Ave Missouri City, TX"
+
+  const geocoder = async (address) => {
+
+    const results = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: address,
+        key: process.env.REACT_APP_API_KEY
+      }
+    })
+
+    console.log(results.data.results);
+  }
 
   useEffect(() => {
-    geocoder = new google.maps.Geocoder()
+    geocoder("2995 Dulles Ave Missouri City, TX")
   }, [])
 
   return (
